@@ -1,6 +1,6 @@
-import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/domain/entities/user/user_entity.dart';
+import '../../../../domain/entities/user/user_entity.dart';
 
-abstract class FirebaseRepository {
+abstract class FirebaseRemoteDataSource {
   //credential
   Future<void> signInUser(UserEntity user);
   Future<void> signUpUser(UserEntity user);
