@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1083886254890",
+    "project_id": "flutter-notes-app-46f70",
+    "storage_bucket": "flutter-notes-app-46f70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083886254890:android:3a33601514ac03c1047c53",
+        "android_client_info": {
+          "package_name": "com.nodejscleanarch.flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083886254890-mt49cqpkbimc517etmchksstui3c0cah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPnNIovpYYiRwGuFn4GH1NlLGx0t9Le6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083886254890-mt49cqpkbimc517etmchksstui3c0cah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1083886254890-kdda0331s8j7jl0co1vem9p30ic6eem0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterNodejsCubitNotesAppCleanArchitecture"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
