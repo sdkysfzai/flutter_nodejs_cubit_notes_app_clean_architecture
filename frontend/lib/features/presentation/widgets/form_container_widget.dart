@@ -42,7 +42,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
         borderRadius: BorderRadius.circular(3),
       ),
       child: TextFormField(
-        style: TextStyle(color: primaryColor),
+        style: const TextStyle(color: primaryColor),
         controller: widget.controller,
         keyboardType: widget.inputType,
         key: widget.fieldKey,

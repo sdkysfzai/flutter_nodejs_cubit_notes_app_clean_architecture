@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/add_note_page/add_note_page.dart';
+import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/favorite_notes_page/favorite_notes_page.dart';
+import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/home_page/home_page.dart';
+import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/profile_page/profile_page.dart';
 import '../../../../consts.dart';
 
 class MainScreen extends StatefulWidget {
@@ -41,12 +45,11 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: backGroundColor,
       bottomNavigationBar: CupertinoTabBar(
+        currentIndex: _currentIndex,
         backgroundColor: backGroundColor,
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home, color: primaryColor), label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search, color: primaryColor), label: ""),
           BottomNavigationBarItem(
               icon: Icon(Icons.add_circle, color: primaryColor), label: ""),
           BottomNavigationBarItem(
@@ -59,14 +62,13 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: PageView(
         controller: pageController,
-        children: [
-          // HomePage(),
-          // SearchPage(),
-          // UploadPostPage(),
-          // ActivityPage(),
-          // ProfilePage()
-        ],
         onPageChanged: onPageChanged,
+        children: const [
+          HomePage(),
+          AddNotePage(),
+          FavoriteNotesPage(),
+          ProfilePage()
+        ],
       ),
     );
   }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/authentication_page/sign_up_page.dart';
-
 import '../../../../consts.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/form_container_widget.dart';
@@ -67,11 +65,8 @@ class _SignInPageBodyState extends State<SignInPageBody> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpPage()),
-                      (route) => false);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, PageConst.signupPage, (route) => false);
                 },
                 child: const Text(
                   "Sign Up.",
