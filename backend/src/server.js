@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-const mongoDbPath = 'mongodb+srv://sdkysfzai:flutter_notes@cluster0.ncklhjc.mongodb.net/notesdb'
+const mongoDbPath = mongoDbSecret
 mongoose.connect(mongoDbPath).then(function () {
 
     app.get("/", function (req, res) {
