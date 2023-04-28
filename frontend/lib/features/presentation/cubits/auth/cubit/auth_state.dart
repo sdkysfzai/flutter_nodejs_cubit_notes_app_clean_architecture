@@ -9,6 +9,9 @@ class AuthInitial extends AuthState {
 }
 
 class Authenticated extends AuthState {
+  Authenticated({required this.uid});
+  final String uid;
+
   @override
   List<Object?> get props => [];
 }

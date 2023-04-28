@@ -49,7 +49,17 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
   }
 
   @override
-  Future<bool> isSinedIn() async => _auth.currentUser?.uid != null;
+  Future<List<UserEntity>> getAllUsers() async {
+    final List<UserEntity> allUsers = [];
+    final data = await _firestore.collection(FirebaseConst.users).get();
+    for (var item in data.docs) {
+      allUsers.add(UserModel.fromSnapshot(item));
+    }
+    return allUsers;
+  }
+
+  @override
+  Future<bool> isSignedIn() async => _auth.currentUser?.uid != null;
 
   @override
   Future<void> signInUser(UserEntity user) async {
@@ -77,8 +87,15 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
   Future<void> signUpUser(UserEntity user) async {
     try {
       if (user.email != null && user.password != null) {
-        await _auth.createUserWithEmailAndPassword(
-            email: user.email!, password: user.password!);
+        await _auth
+            .createUserWithEmailAndPassword(
+                email: user.email!, password: user.password!)
+            .then((value) async => {
+                  if (value.user != null)
+                    {
+                      await createUser(user),
+                    }
+                });
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
@@ -90,8 +107,16 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
   }
 
   @override
-  Future<void> updateUser(UserEntity user) {
-    //TODO: use copywith method to update user
-    throw UnimplementedError();
+  Future<void> updateUser(UserEntity user) async {
+    Map<String, dynamic> userInformation = {};
+
+    if (user.username != '' && user.username != null) {
+      userInformation['username'] = user.username;
+    }
+
+    _firestore
+        .collection(FirebaseConst.users)
+        .doc(user.uid)
+        .update(userInformation);
   }
 }

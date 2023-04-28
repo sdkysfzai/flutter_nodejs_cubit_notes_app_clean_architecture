@@ -27,8 +27,13 @@ class FirebaseRepositoryImplementation extends FirebaseRepository {
   }
 
   @override
-  Future<void> isSinedIn() {
-    return firebaseRemoteDataSource.isSinedIn();
+  Future<List<UserEntity>> getAllUsers() {
+    return firebaseRemoteDataSource.getAllUsers();
+  }
+
+  @override
+  Future<bool> isSignedIn() {
+    return firebaseRemoteDataSource.isSignedIn();
   }
 
   @override

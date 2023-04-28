@@ -4,7 +4,7 @@ class IsSignedInUseCase {
   IsSignedInUseCase({required this.repository});
   final FirebaseRepository repository;
 
-  Future<void> call() {
-    return repository.isSinedIn();
+  Future<bool> call() {
+    return repository.isSignedIn();
   }
 }
