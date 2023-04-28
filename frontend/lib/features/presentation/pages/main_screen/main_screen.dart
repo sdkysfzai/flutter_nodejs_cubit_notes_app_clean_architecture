@@ -4,7 +4,7 @@ import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/prese
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/favorite_notes_page/favorite_notes_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/home_page/home_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/profile_page/profile_page.dart';
-import '../../../../consts.dart';
+import '../../../utils/consts/color_consts.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

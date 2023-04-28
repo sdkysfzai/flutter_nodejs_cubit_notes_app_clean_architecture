@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../consts.dart';
+import '../../../utils/consts/color_consts.dart';
+import '../../../utils/consts/page_consts.dart';
+import '../../../utils/extensions/helper_methods.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/form_container_widget.dart';
 

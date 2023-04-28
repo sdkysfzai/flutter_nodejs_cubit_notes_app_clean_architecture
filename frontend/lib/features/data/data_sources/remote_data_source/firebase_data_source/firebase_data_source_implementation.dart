@@ -4,7 +4,8 @@ import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/data/
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/data/models/user_model.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/domain/entities/user/user_entity.dart';
 
-import '../../../../../consts.dart';
+import '../../../../utils/consts/firebase_const.dart';
+import '../../../../utils/extensions/helper_methods.dart';
 
 class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -68,7 +69,7 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
         await _auth.signInWithEmailAndPassword(
             email: user.email!, password: user.password!);
       } else {
-        print("Fields can't be empty");
+        toast("Username and Password can't be empty");
       }
     } on FirebaseAuthException catch (e) {
       //TODO toast shouldn't be shown from Data Layer

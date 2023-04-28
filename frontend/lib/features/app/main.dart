@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/authentication_page/sign_in_page.dart';
-import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/on_generate_route.dart';
+import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/config/routes/on_generate_route.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/consts.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/authentication_page/sign_in_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/authentication_page/sign_up_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/add_note_page/add_note_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/favorite_notes_page/favorite_notes_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/home_page/home_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/profile_page/profile_page.dart';
+
+import '../../utils/consts/page_consts.dart';
 
 class OnGenerateRoute {
   static Route<dynamic>? route(RouteSettings settings) {
