@@ -23,3 +23,34 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+/*
+Watched thoroughly your code
+What I didn't liked 
+1. You have features folder but you didn't separated features
+Like you have everything inside one file 
+What you could have done is that having 
+Auth 
+Comment
+Post
+Profile
+These kind of subfeatures inside feature folder 
+And having domain data and presentation layer inside each subfeature 
+This could really make file leaner and more maintainable
+2. Showing toast directly from data layer 
+Your data layer should only be responsible for handling data related task 
+Like fetching data and handling exception nothing else 
+3. Your cubit are also handling exception logics
+Which shouldn't be done 
+Instead handle exception in data layer 
+And pass in failure to domain layer usecases 
+4. Having more than one usecase dependency inside single cubit 
+Eg. DeleteUsecase
+CommentUsecase
+Replyusecase inside a cubit 
+Rater create one major usecase 
+And have those injected inside that usecase 
+And use single usecase in cubit 
+Overall code looks clean. That's my feedback. Hope you don't mind
+*/

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 const backGroundColor = Color.fromRGBO(0, 0, 0, 1.0);
 const blueColor = Color.fromRGBO(0, 149, 246, 1);
@@ -23,4 +24,19 @@ class PageConst {
   static const String profilePage = "profilePage";
   static const String favoritePage = "favoritePage";
   static const String addNotePage = "addNotePage";
+}
+
+class FirebaseConst {
+  static const String users = 'users';
+}
+
+void toast(String message) {
+  Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: blueColor,
+      textColor: Colors.white,
+      fontSize: 16.0);
 }
