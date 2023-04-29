@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         We use GetIt as DI to easily access all the required dependencies
         BlocProvider(
             create: (context) => AuthCubit(
-                  isSignedInUseCase: isSignedInUseCase,
+                  isSignedInUseCase: isSignedInUseCase, <- These dependencies
                   getCurrentUidUseCase: getCurrentUidUseCase,
                   signOutUserUseCase: signOutUserUseCase,
                 ))
