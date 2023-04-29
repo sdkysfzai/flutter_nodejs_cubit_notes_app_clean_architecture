@@ -7,7 +7,8 @@ import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/prese
 import '../../../utils/consts/color_consts.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({Key? key, required this.uid}) : super(key: key);
+  final String uid;
 
   @override
   State<MainScreen> createState() => _MainScreenState();

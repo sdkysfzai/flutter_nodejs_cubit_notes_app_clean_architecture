@@ -8,12 +8,13 @@ import '../../../../utils/consts/firebase_const.dart';
 import '../../../../utils/extensions/helper_methods.dart';
 
 class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
+  FirebaseRemoteDataSourceImpl({required this.auth, required this.firestore});
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Future<void> createUser(UserEntity user) async {
-    final userCollection = _firestore.collection(FirebaseConst.users);
+    final userCollection = firestore.collection(FirebaseConst.users);
     final uid = await getCurrentUid();
     userCollection.doc(uid).get().then((userDoc) {
       final newUser = UserModel(
@@ -34,17 +35,17 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
 
   @override
   Future<void> deleteUser(UserEntity user) async {
-    final userCollection = _firestore.collection(FirebaseConst.users);
+    final userCollection = firestore.collection(FirebaseConst.users);
     final uid = await getCurrentUid();
     await userCollection.doc(uid).delete();
   }
 
   @override
-  Future<String> getCurrentUid() async => _auth.currentUser!.uid;
+  Future<String> getCurrentUid() async => auth.currentUser!.uid;
 
   @override
   Future<UserEntity> getSingleUser(String uid) async {
-    final userDoc = _firestore.collection(FirebaseConst.users).doc(uid);
+    final userDoc = firestore.collection(FirebaseConst.users).doc(uid);
     final user = await userDoc.get();
     return UserModel.fromSnapshot(user);
   }
@@ -52,7 +53,7 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
   @override
   Future<List<UserEntity>> getAllUsers() async {
     final List<UserEntity> allUsers = [];
-    final data = await _firestore.collection(FirebaseConst.users).get();
+    final data = await firestore.collection(FirebaseConst.users).get();
     for (var item in data.docs) {
       allUsers.add(UserModel.fromSnapshot(item));
     }
@@ -60,13 +61,13 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
   }
 
   @override
-  Future<bool> isSignedIn() async => _auth.currentUser?.uid != null;
+  Future<bool> isSignedIn() async => auth.currentUser?.uid != null;
 
   @override
   Future<void> signInUser(UserEntity user) async {
     try {
       if (user.email != null && user.password != null) {
-        await _auth.signInWithEmailAndPassword(
+        await auth.signInWithEmailAndPassword(
             email: user.email!, password: user.password!);
       } else {
         toast("Username and Password can't be empty");
@@ -82,13 +83,13 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
   }
 
   @override
-  Future<void> signOut() async => _auth.signOut();
+  Future<void> signOut() async => auth.signOut();
 
   @override
   Future<void> signUpUser(UserEntity user) async {
     try {
       if (user.email != null && user.password != null) {
-        await _auth
+        await auth
             .createUserWithEmailAndPassword(
                 email: user.email!, password: user.password!)
             .then((value) async => {
@@ -115,7 +116,7 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
       userInformation['username'] = user.username;
     }
 
-    _firestore
+    firestore
         .collection(FirebaseConst.users)
         .doc(user.uid)
         .update(userInformation);
