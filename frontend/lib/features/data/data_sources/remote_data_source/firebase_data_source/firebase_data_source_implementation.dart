@@ -14,23 +14,12 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
 
   @override
   Future<void> createUser(UserEntity user) async {
-    final userCollection = firestore.collection(FirebaseConst.users);
     final uid = await getCurrentUid();
-    userCollection.doc(uid).get().then((userDoc) {
-      final newUser = UserModel(
-        email: user.email,
-        uid: uid,
-        username: user.username,
-      ).toJson();
-
-      if (!userDoc.exists) {
-        userCollection.doc(uid).set(newUser);
-      } else {
-        userCollection.doc(uid).update(newUser);
-      }
-    }).catchError((error) {
-      toast("Something went wrong!");
-    });
+    await firestore.collection(FirebaseConst.users).doc(uid).set({
+      "username": user.username,
+      "email": user.email,
+      "uid": uid,
+    }).then((value) => toast("Registeration Success!"));
   }
 
   @override
@@ -102,8 +91,14 @@ class FirebaseRemoteDataSourceImpl extends FirebaseRemoteDataSource {
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
         toast("email is already taken");
+      } else if (e.code == "invalid-email") {
+        toast("invalid email");
+      } else if (e.code == "operation-not-allowed") {
+        toast("Not allowed");
+      } else if (e.code == "weak-password") {
+        toast("Weak Password");
       } else {
-        toast("something went wrong");
+        toast("something went wrong ${e.message}");
       }
     }
   }

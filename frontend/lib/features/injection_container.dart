@@ -17,6 +17,7 @@ import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/domai
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/cubits/auth/cubit/auth_cubit.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/cubits/credential/cubit/credential_cubit.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/cubits/user/cubit/all_users_cubit/users_cubit.dart';
+import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/cubits/user/cubit/single_user_cubit/cubit/single_user_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -38,6 +39,9 @@ Future<void> init() async {
         getAllUsersUsecase: sl.call(),
         updateUserUseCase: sl.call(),
       ));
+  sl.registerFactory(() => GetSingleUserCubit(
+      getUserUsecase: sl.call(), updateUserUseCase: sl.call()));
+
   //usecases
   sl.registerLazySingleton(() => CreateUserUseCase(repository: sl.call()));
   sl.registerLazySingleton(() => DeleteUserUseCase(repository: sl.call()));

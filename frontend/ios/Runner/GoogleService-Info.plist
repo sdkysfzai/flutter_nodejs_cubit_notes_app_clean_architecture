@@ -3,18 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1083886254890-kdda0331s8j7jl0co1vem9p30ic6eem0.apps.googleusercontent.com</string>
+	<string>1083886254890-p332206pnlp8ekq5fqkcuifiuhq8gpt4.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1083886254890-kdda0331s8j7jl0co1vem9p30ic6eem0</string>
+	<string>com.googleusercontent.apps.1083886254890-p332206pnlp8ekq5fqkcuifiuhq8gpt4</string>
 	<key>API_KEY</key>
-	<!-- <string>AIzaSyDX0bxP3ZeAUo6MhcGmIQM3AK74X91qUuM</string> -->
-	<string></string>
+	<string>AIzaSyDX0bxP3ZeAUo6MhcGmIQM3AK74X91qUuM</string>
 	<key>GCM_SENDER_ID</key>
 	<string>1083886254890</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.flutterNodejsCubitNotesAppCleanArchitecture</string>
+	<string>com.nodejscleanarch.flutter</string>
 	<key>PROJECT_ID</key>
 	<string>flutter-notes-app-46f70</string>
 	<key>STORAGE_BUCKET</key>
@@ -30,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1083886254890:ios:379b74724f05fb30047c53</string>
+	<string>1:1083886254890:ios:be89234989ce547d047c53</string>
 </dict>
 </plist>

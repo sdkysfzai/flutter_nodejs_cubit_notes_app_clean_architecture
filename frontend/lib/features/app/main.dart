@@ -7,7 +7,6 @@ import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/prese
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/cubits/user/cubit/single_user_cubit/cubit/single_user_cubit.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/authentication_page/sign_in_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/config/routes/on_generate_route.dart';
-import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/home_page/home_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/main_screen.dart';
 import '../injection_container.dart' as di;
 
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
         We use GetIt as DI to easily access all the required dependencies
         BlocProvider(
             create: (context) => AuthCubit(
-                  isSignedInUseCase: isSignedInUseCase, <- These dependencies
+                  isSignedInUseCase: isSignedInUseCase, <- dependencies
                   getCurrentUidUseCase: getCurrentUidUseCase,
                   signOutUserUseCase: signOutUserUseCase,
                 ))

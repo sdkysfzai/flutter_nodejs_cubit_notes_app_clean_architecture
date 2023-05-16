@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/cubits/user/cubit/single_user_cubit/cubit/single_user_cubit.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/add_note_page/add_note_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/favorite_notes_page/favorite_notes_page.dart';
 import 'package:flutter_nodejs_cubit_notes_app_clean_architecture/features/presentation/pages/main_screen/home_page/home_page.dart';
@@ -18,11 +20,11 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
   late PageController pageController;
-
   @override
   void initState() {
-    pageController = PageController();
     super.initState();
+    BlocProvider.of<GetSingleUserCubit>(context).getUser(uid: widget.uid);
+    pageController = PageController();
   }
 
   @override
@@ -43,33 +45,53 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backGroundColor,
-      bottomNavigationBar: CupertinoTabBar(
-        currentIndex: _currentIndex,
-        backgroundColor: backGroundColor,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: primaryColor), label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle, color: primaryColor), label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite, color: primaryColor), label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined, color: primaryColor),
-              label: ""),
-        ],
-        onTap: navigationTapped,
-      ),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: onPageChanged,
-        children: const [
-          HomePage(),
-          AddNotePage(),
-          FavoriteNotesPage(),
-          ProfilePage()
-        ],
+    return SafeArea(
+      child: BlocBuilder<GetSingleUserCubit, GetSingleUserCubitState>(
+        builder: (context, singleUserState) {
+          if (singleUserState is GetSingleUserCubitLoaded) {
+            final user = singleUserState.user;
+            return Scaffold(
+              backgroundColor: backGroundColor,
+              bottomNavigationBar: CupertinoTabBar(
+                currentIndex: _currentIndex,
+                backgroundColor: backGroundColor,
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.home, color: primaryColor), label: ""),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.add_circle, color: primaryColor),
+                      label: ""),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.favorite, color: primaryColor),
+                      label: ""),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.account_circle_outlined,
+                          color: primaryColor),
+                      label: ""),
+                ],
+                onTap: navigationTapped,
+              ),
+              body: PageView(
+                controller: pageController,
+                onPageChanged: onPageChanged,
+                children: const [
+                  HomePage(),
+                  AddNotePage(),
+                  FavoriteNotesPage(),
+                  ProfilePage()
+                ],
+              ),
+            );
+          } else {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(
+                  color: blueColor,
+                ),
+              ),
+            );
+          }
+        },
       ),
     );
   }
